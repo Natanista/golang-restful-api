@@ -19,13 +19,20 @@ var employees = []employee{
     {ID: "3", Name: "Marcelo", LastName: "Amaral", Salary: 1139.00},
 }
 
+var hello = "Deu tudo certo no deploy do heroku"
+
 func main() {
     router := gin.Default()
     router.GET("/employees", getEmployees)
     router.GET("/employees/:id", getEmployeeById)
     router.POST("/employees", postEmployees)
+	router.GET("/", getPath)
 
     router.Run("localhost:8080")
+}
+
+func getPath(c *gin.Context) {
+	c.IndentedJSON(http.StatusOK,hello)
 }
 
 func getEmployees(c *gin.Context) {
